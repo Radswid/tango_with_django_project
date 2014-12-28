@@ -1,7 +1,12 @@
 # Django settings for tango_with_django_project project.
+import os
+SETTINGS_DIR = os.path.dirname(__file__)
+PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
+PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -11,13 +16,13 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'test',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'PORT': '5432',                      # Set to empty string for default.
     }
 }
 
@@ -29,11 +34,11 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Warsaw'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pl'
 
 SITE_ID = 1
 
@@ -63,6 +68,8 @@ MEDIA_URL = ''
 # Example: "/var/www/example.com/static/"
 STATIC_ROOT = ''
 
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
+
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
@@ -72,6 +79,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    STATIC_PATH,
 )
 
 # List of finder classes that know how to find static files in
@@ -111,6 +119,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    TEMPLATE_PATH,
 )
 
 INSTALLED_APPS = (
