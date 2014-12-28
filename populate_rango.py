@@ -1,8 +1,10 @@
 import os
 
 def populate():
-    python_cat = add_cat('Python')
-
+    python_cat = add_cat('Python',
+        views=128,
+        like=64)
+        
     add_page(cat=python_cat,
         title="Official Python Tutorial",
         url="http://docs.python.org/2/tutorial/")
@@ -15,8 +17,10 @@ def populate():
         title="Learn Python in 10 Minutes",
         url="http://www.korokithakis.net/tutorials/python/")
 
-    django_cat = add_cat("Django")
-
+    django_cat = add_cat("Django",
+        views=64,
+        like=32)
+        
     add_page(cat=django_cat,
         title="Official Django Tutorial",
         url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/")
@@ -29,8 +33,10 @@ def populate():
         title="How to Tango with Django",
         url="http://www.tangowithdjango.com/")
 
-    frame_cat = add_cat("Other Frameworks")
-
+    frame_cat = add_cat("Other Frameworks",
+        views=32,
+        like=16)
+        
     add_page(cat=frame_cat,
         title="Bottle",
         url="http://bottlepy.org/docs/dev/")
@@ -48,8 +54,8 @@ def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title, url=url, views=views)[0]
     return p
 
-def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0]
+def add_cat(name, views, like):
+    c = Category.objects.get_or_create(name=name, views=views, like=like)[0]
     return c
 
 # Start execution here!
