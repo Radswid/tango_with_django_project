@@ -6,43 +6,40 @@
 <html>
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Rango</title>
-	<link rel="stylesheet" type="text/css" href="{% static "style.css" %}/>
+	
     </head>
     <body>
-    <div id="container">
-      <div id="topheader">
-			  <br /><h1 id="theader">Yoursite.com</h1>
-        <span id="theadert">A short slogan thing here</span>
-			</div>
-		  <div id="mainbanner">
-			  Some catchy slogan here
-			</div>
-			<div id="nav">
-			  <ul>
-				  <li><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Portfolio</a></li>
-					<li><a href="#">Guestbook</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</div>
-			<div id="body">
-			<h2>Welcome to yoursite.com</h2>
-			<h1>Rango says...</h1>
-        hello world! <strong>{{ boldmessage }}</strong><br />
+    
+	<h1>Rango says...hello world! </h1>
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li><a href="/rango/category/{{ category.url }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}    
+	
+	{% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li>{{ page.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no pages present.</strong>
+        {% endif %}
+        <a href="/rango/add_category/">Add a New Category</a></br>
+	<a href="/rango/register/">Register Here</a></br>
         <a href="/rango/about/">About</a><br />
 	<img src="{% static "rango.jpg" %}" alt="Picture of Rango" /> <!-- New line -->
 
 
 
-			</div>
-		</div>
-		<div id="footer">
-		  Copyright 2006 yoursite.com - Designed by <a href="http://www.td50.com" target="_blank" title="TD50.com">TD50.com</a>
-		</div>
+		
 	</body>
     
 
